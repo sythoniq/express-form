@@ -6,9 +6,21 @@
 <body>
   <h1><%= title %></h1>
   <%- include("partials/errors.ejs") %>
-  <form action="/<%= user.id %>/update" method="POST">
-    <input type="text" name="firstName" value="<%= user.firstName %>" required>
-    <input type="text" name="lastName" value="<%= user.lastName %>" required>
+  <form action="/<%= user.id %>/update" method="POST" style="display: flex; flex-direction:
+  column; gap: .5em; width: 700px; padding: .2em;" autocomplete="off"> 
+    <label for="firstName">First Name: </label>
+    <input type="text" name="firstName" id="firstName" value="<%= user.firstName
+        %>" required>
+    <label for="lastName">Last Name: </label>
+    <input type="text" name="lastName" id="lastName" value="<%= user.lastName %>" required>
+    <label for="email">Email: </label>
+    <input type="email" name="email" id="email" value="<%= user.email %>" required>
+    <label for="age">Age: </label>
+    <input type="number" name="age" id="age" value="<%= user.age %>" min='18'
+        max='120' >
+    <label for="bio">Bio: </label>
+    <input type="textarea" name="bio" id="bio" max='200' style="padding: .2em;"
+        value="<%= user.bio %>">
     <button type="submit">Update User</button>
   </form>
   <a href="/">Back to home</a>

@@ -1,25 +1,45 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title><%= title %></title>
-</head>
-<body>
-  <h1><%= title %></h1>
-  <ul>
-    <% if (locals.users) {%>
+  <head>
+    <title><%= title %></title>
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <ul style="display: flex; 
+    flex-direction: column; gap: .2em;">
+      <% if (locals.users) {%>
       <% users.forEach(user => { %>
-        <li>
-          ID: <%= user.id %>, Name: <%= user.firstName %> <%= user.lastName
-        %></li>
-          <a href="/<%= user.id %>/update">Update</a>
-      <form action="/<%= user.id %>/delete" method="POST" style="display:
-      inline;">
-        <button type="submit" onclick="return confirm(`U sure abt
-this?`)">Delete</button>
-      </form>
+      <li style="
+        list-style-type: none;
+        font-size:1.2em;
+        font-family: monospace;
+        font-weight: 600;
+        ">
+        ID: <%= user.id %><br>
+        Name: <%= user.firstName %> <%= user.lastName%><br>
+        Email: <%= user.email %><br> Age: <%= user.age %><br>
+        Bio: <%= user.bio %><br>
+        <a href="/<%= user.id %>/update" style="
+          text-decoration: none; color: rgba(0, 0, 0, 0.6);
+          border-radius: 12px;
+          ">Update</a>
+        <form action="/<%= user.id %>/delete" method="POST" style="display:
+          inline;">
+          <button type="submit" onclick="return confirm(`U sure abt
+this?`)" style="
+            border: none; border-radius: 12px;
+            background: none;
+            color: rgba(0, 0, 0, 0.6);
+            font-size: 1em;
+            font-weight: 600;
+            font-family: monospace;
+            cursor: pointer;
+            ">Delete</button>
+        </form>
+      </li>
       <% }); %>
-    <% } %>
-  </ul>
-  <a href="/create">Create a user</a>
-</body>
+      <% } %>
+    </ul>
+    <a href="/create">Create a user</a>
+  </body>
 </html>

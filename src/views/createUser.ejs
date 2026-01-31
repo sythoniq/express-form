@@ -3,15 +3,27 @@
   <head>
     <title><%= title %></title>
   </head>
-<body>
+<body style="display: flex; flex-direction: column;
+  justify-content: center; align-items: center; font-size: 1.2em;
+  font-family: monospace; font-weight: 600; gap: 1.2em;">
   <h1><%= title %></h1>
   <%- include("partials/errors.ejs") %> 
-  <form action="/create" method="POST">
+  <form action="/create" method="POST" style="display: flex; flex-direction:
+  column; gap: .5em; width: 700px; padding: .2em;" autocomplete="off">
     <label for="firstName">First Name: </label>
     <input type="text" name="firstName" id="firstName" required>
     <label for="lastName">Last Name: </label>
     <input type="text" name="lastName" id="lastName" required>
-    <button type="submit">Submit</button>
+    <label for="email">Email: </label>
+    <input type="email" name="email" id="email" required>
+    <label for="age">Age: </label>
+    <input type="number" name="age" id="age" min='18' max='120' >
+    <label for="bio">Bio: </label>
+    <input type="textarea" name="bio" id="bio" max='200' style="padding: .2em;">
+    <button type="submit" style="
+        align-self: center; padding: .2em; font-size: 1.2em;
+        font-family: monospace; font-weight: 600; cursor: pointer;
+        ">Submit</button>
   </form>
   <a href="/">Back to home</a>
 </body>
