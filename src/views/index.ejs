@@ -9,8 +9,14 @@
     <% if (locals.users) {%>
       <% users.forEach(user => { %>
         <li>
-          ID: <%= user.id %>, Name: <%= user.firstName %> <%= user.lastName %>
-        </li>
+          ID: <%= user.id %>, Name: <%= user.firstName %> <%= user.lastName
+        %></li>
+          <a href="/<%= user.id %>/update">Update</a>
+      <form action="/<%= user.id %>/delete" method="POST" style="display:
+      inline;">
+        <button type="submit" onclick="return confirm(`U sure abt
+this?`)">Delete</button>
+      </form>
       <% }); %>
     <% } %>
   </ul>
