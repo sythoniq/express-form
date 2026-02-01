@@ -1,19 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title><%= title %></title>
   </head>
   <body>
-    <form action="/search" method="GET">
-      <input type="text" name="search" id="search" placeholder="Search"
-        autocomplete = "off">
-      <button type="submit">Search</button>
-    </form>
     <h1><%= title %></h1>
     <ul style="display: flex; 
     flex-direction: column; gap: .2em;">
-      <% if (locals.users) {%>
-      <% users.forEach(user => { %>
+      <% if (locals.user) {%>
       <li style="
         list-style-type: none;
         font-size:1.2em;
@@ -24,6 +18,8 @@
         Name: <%= user.firstName %> <%= user.lastName%><br>
         Email: <%= user.email %><br> Age: <%= user.age %><br>
         Bio: <%= user.bio %><br>
+        <a href="/">Return</a>
+
         <a href="/<%= user.id %>/update" style="
           text-decoration: none; color: rgba(0, 0, 0, 0.6);
           border-radius: 12px;
@@ -42,9 +38,7 @@ this?`)" style="
             ">Delete</button>
         </form>
       </li>
-      <% }); %>
       <% } %>
     </ul>
-    <a href="/create">Create a user</a>
   </body>
 </html>

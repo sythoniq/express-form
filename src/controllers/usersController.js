@@ -13,9 +13,9 @@ const validateUser = [
   body("lastName").trim()
     .isAlpha().withMessage(`Last name ${alphaErr}`)
     .isLength({ min: 1, max: 10 }).withMessage(`Last name ${lengthErr}`),
-  body("email").trim().optional().isEmail().withMessage(`Email ${emailErr}`),
-  body("age").trim().optional().isLength({ min: 18, max: 120}),
-  body("bio").trim().optional().isLength({ max: 200 })
+  body("email").trim().isEmail().withMessage(`Email ${emailErr}`),
+  body("age").trim().optional(),
+  body("bio").trim().optional().isLength({ max: 200 }).withMessage("Error at bio")
   
 ];
 
@@ -78,4 +78,16 @@ exports.usersUpdatePost = [
 exports.usersDeletePost = (req, res) => {
   usersStorage.deleteUser(req.params.id);
   res.redirect("/");
+}
+
+exports.usersGetUser = (req, res) => {
+  const users = usersStorage.getUsers();
+  let user = users.find((u) => u.firstName == req.query.search) || 
+    users.find((u) => u.lastName == req.query.search) ||
+    users.find((u) => u.email == req.query.search);
+
+  res.render("userDetail", {
+    title: "Search results",
+    user: user,
+  })
 }
